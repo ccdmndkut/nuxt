@@ -1,24 +1,16 @@
 <template>
   <section class="container">
     <div>
-      <logo />
       <h1 class="title">
-        HOME
+        locked
       </h1>
-      <h2 class="subtitle">
-        nuxt
-      </h2>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
+  components: {}
 }
 </script>
 
