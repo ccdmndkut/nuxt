@@ -1,63 +1,52 @@
 <template>
   <section class="container">
     <div>
-      <h1 class="title">
+      <h1 class="subtitle">
         login
       </h1>
-      <b-card bg-variant="light">
+      <b-card
+        id="card"
+        bg-variant="light"
+      >
         <b-form-group
-          horizontal
-          breakpoint="lg"
-          label="Login Here"
-          label-size="lg"
-          label-class="font-weight-bold pt-0"
-          class="mb-0"
+          id="fieldset1"
+          label="Enter your username"
+          label-for="user"
+          :invalid-feedback="invalidFeedback"
+          :valid-feedback="validFeedback"
+          :state="state"
         >
-          <b-form-group
-            horizontal
-            label="Email:"
-            label-class="text-sm-right"
-            label-for="nestedStreet"
-          >
-            <b-form-input id="nestedStreet" />
-          </b-form-group>
-          <b-form-group
-            horizontal
-            label="City:"
-            label-class="text-sm-right"
-            label-for="nestedCity"
-          >
-            <b-form-input id="nestedCity" />
-          </b-form-group>
-          <b-form-group
-            horizontal
-            label="State:"
-            label-class="text-sm-right"
-            label-for="nestedState"
-          >
-            <b-form-input id="nestedState" />
-          </b-form-group>
-          <b-form-group
-            horizontal
-            label="Country:"
-            label-class="text-sm-right"
-            label-for="nestedCountry"
-          >
-            <b-form-input id="nestedCountry" />
-          </b-form-group>
-          <b-form-group
-            horizontal
-            label="Ship via:"
-            label-class="text-sm-right"
-            class="mb-0"
-          >
-            <b-form-radio-group
-              :options="['Air', 'Courier', 'Mail']"
-              class="pt-2"
-            />
-          </b-form-group>
+          <b-form-input
+            @blur="clearPass()"
+            id="user"
+            :state="state"
+            v-model.trim="name"
+          ></b-form-input>
         </b-form-group>
+        <b-form-group
+          id="fieldset2"
+          :description="passDesc"
+          label="Enter your password"
+          label-for="pass"
+          :invalid-feedback="invalidFeedbackPass"
+          :valid-feedback="validFeedbackPass"
+          :state="statePass"
+        >
+          <b-form-input
+            id="pass"
+            :state="statePass"
+            :disabled="passInpState"
+            v-model.trim="pass"
+          ></b-form-input>
+        </b-form-group>
+        <div>
+          <b-button
+            block
+            :disabled="loginDisabled"
+          >Login</b-button>
+        </div>
       </b-card>
+
     </div>
   </section>
 </template>
@@ -68,17 +57,87 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  data: () => ({
+    name: '',
+    pass: ''
+  }),
+  mounted() {
+    document.getElementById('user').addEventListener('blur', function() {
+      let userField = document.getElementById('user').value
+      if (userField.length < 4) {
+        document.getElementById('pass').value = ''
+        this.pass = ''
+      }
+    })
+  },
+  computed: {
+    loginDisabled() {
+      return this.pass.length > 3 ? false : true
+    },
+    passDesc() {
+      return this.pass.length > 0 ? '' : 'Password'
+    },
+    passInpState() {
+      return this.state ? false : true
+    },
+    state() {
+      return this.name.length >= 4 ? true : false
+    },
+    statePass() {
+      if (this.pass.length < 1) {
+        return false
+      } else {
+        return this.pass.length >= 4 ? true : false
+      }
+    },
+    invalidFeedback() {
+      if (this.name.length > 4) {
+        return ''
+      } else if (this.name.length > 0) {
+        return 'Enter at least 4 characters'
+      } else {
+        return 'Please enter your email'
+      }
+    },
+    validFeedback() {
+      if (this.pass.length > 0) {
+        return '&nbsp'
+      } else {
+        return this.state === true ? 'Enter password below' : '&nbsp'
+      }
+    },
+    invalidFeedbackPass() {
+      if (this.pass.length >= 1) {
+        return 'Password must be at least 4 characters'
+      } else {
+        return ''
+      }
+    },
+    validFeedbackPass() {
+      return this.statePass === true ? 'Login below' : '&nbsp'
+    }
+  },
+  methods: {
+    clearPass() {
+      this.pass = ''
+    }
   }
 }
 </script>
 
 <style>
+#card {
+  width: 50vw;
+  height: 50vh;
+}
 .container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
+  margin-top: 50px;
 }
 
 .title {
