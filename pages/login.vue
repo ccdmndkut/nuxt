@@ -1,52 +1,52 @@
 <template>
-  <section class="container">
+  <section class='container'>
     <div>
-      <h1 class="subtitle">
-        login
-      </h1>
+      <h1 class='subtitle'>login</h1>
       <b-card
-        id="card"
-        bg-variant="light"
+        bg-variant='light'
+        id='card'
       >
         <b-form-group
-          id="fieldset1"
-          label="Enter your username"
-          label-for="user"
-          :invalid-feedback="invalidFeedback"
-          :valid-feedback="validFeedback"
-          :state="state"
+          :invalid-feedback='invalidFeedback'
+          :state='userLength'
+          :valid-feedback='validFeedback'
+          id='fieldset1'
+          label='Enter your username'
+          label-for='user'
         >
           <b-form-input
-            @blur="clearPass()"
-            id="user"
-            :state="state"
-            v-model.trim="name"
+            :state='userLength'
+            @blur='clearPass()'
+            id='user'
+            v-model.trim='user'
           ></b-form-input>
         </b-form-group>
         <b-form-group
-          id="fieldset2"
-          :description="passDesc"
-          label="Enter your password"
-          label-for="pass"
-          :invalid-feedback="invalidFeedbackPass"
-          :valid-feedback="validFeedbackPass"
-          :state="statePass"
+          :description='passDesc'
+          :invalid-feedback='invalidFeedbackPass'
+          :state='statePass'
+          :valid-feedback='validFeedbackPass'
+          id='fieldset2'
+          label='Enter your password'
+          label-for='pass'
         >
           <b-form-input
-            id="pass"
-            :state="statePass"
-            :disabled="passInpState"
-            v-model.trim="pass"
+            :disabled='passInpState'
+            :state='statePass'
+            id='pass'
+            type='password'
+            v-model.trim='pass'
           ></b-form-input>
         </b-form-group>
         <div>
           <b-button
+            :disabled='loginDisabled'
             block
-            :disabled="loginDisabled"
+            exact
+            to='/'
           >Login</b-button>
         </div>
       </b-card>
-
     </div>
   </section>
 </template>
@@ -59,30 +59,36 @@ export default {
     Logo
   },
   data: () => ({
-    name: '',
-    pass: ''
+    user: '',
+    pass: '',
+    loginDisabled: true
   }),
-  mounted() {
-    document.getElementById('user').addEventListener('blur', function() {
-      let userField = document.getElementById('user').value
-      if (userField.length < 4) {
-        document.getElementById('pass').value = ''
-        this.pass = ''
+
+  watch: {
+    user() {
+      if (this.user.length < 4) {
+        this.loginDisabled = true
+      } else if (this.user.length > 3 && this.pass.length > 3) {
+        this.loginDisabled = false
       }
-    })
+    },
+    pass() {
+      if (this.pass.length > 3) {
+        this.loginDisabled = false
+      } else {
+        this.loginDisabled = true
+      }
+    }
   },
   computed: {
-    loginDisabled() {
-      return this.pass.length > 3 ? false : true
+    userLength() {
+      return this.user.length > 3 ? true : false
     },
     passDesc() {
       return this.pass.length > 0 ? '' : 'Password'
     },
     passInpState() {
-      return this.state ? false : true
-    },
-    state() {
-      return this.name.length >= 4 ? true : false
+      return this.userLength ? false : true
     },
     statePass() {
       if (this.pass.length < 1) {
@@ -92,9 +98,9 @@ export default {
       }
     },
     invalidFeedback() {
-      if (this.name.length > 4) {
+      if (this.user.length > 4) {
         return ''
-      } else if (this.name.length > 0) {
+      } else if (this.user.length > 0) {
         return 'Enter at least 4 characters'
       } else {
         return 'Please enter your email'
@@ -104,7 +110,7 @@ export default {
       if (this.pass.length > 0) {
         return '&nbsp'
       } else {
-        return this.state === true ? 'Enter password below' : '&nbsp'
+        return this.userLength === true ? 'Enter password below' : '&nbsp'
       }
     },
     invalidFeedbackPass() {
@@ -119,8 +125,8 @@ export default {
     }
   },
   methods: {
-    clearPass() {
-      this.pass = ''
+    blurMe() {
+      blur()
     }
   }
 }
