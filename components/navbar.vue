@@ -6,7 +6,6 @@
       variant='info'
     >
       <b-navbar-toggle target='nav_collapse'/>
-
       <b-navbar-brand to='/'>NavBar</b-navbar-brand>
       <b-collapse
         id='nav_collapse'
@@ -18,7 +17,7 @@
             to='/login'
           >login</b-nav-item>
           <b-nav-item
-            @click='classToggle('home', $event)'
+            @click='classToggle("home", $event)'
             exact
             id='home'
             to='/'
@@ -93,20 +92,9 @@ export default {
   methods: {
     classToggle(el, event) {
       console.log(this.activeClass)
-      // let e = event.target
-      // e.classList.add('active')
-      // console.log(e)
-      // let home = document.getElementById(el).children.item(0)
-      // let t = event.target
-      // home.classList.remove('active')
-      // t.classList.add('active')
-      // this.test = event.classList
     }
   }
 }
 </script>
 <style>
-a:hover {
-  text-decoration: unset;
-}
 </style>
