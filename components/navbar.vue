@@ -1,76 +1,74 @@
 <template>
   <div>
     <b-navbar
-      toggleable="md"
-      type="dark"
-      variant="info"
+      toggleable='md'
+      type='dark'
+      variant='info'
     >
-      <b-navbar-toggle target="nav_collapse" />
+      <b-navbar-toggle target='nav_collapse'/>
 
-      <b-navbar-brand to="/">NavBar</b-navbar-brand>
+      <b-navbar-brand to='/'>NavBar</b-navbar-brand>
       <b-collapse
-        id="nav_collapse"
+        id='nav_collapse'
         is-nav
       >
         <b-navbar-nav>
           <b-nav-item
-            id="login"
-            to="/login"
+            id='login'
+            to='/login'
           >login</b-nav-item>
           <b-nav-item
-            id="home"
-            to="/"
+            @click='classToggle('home', $event)'
             exact
-            @click="classToggle('home', $event)"
-          >
-            home
-          </b-nav-item>
+            id='home'
+            to='/'
+          >home</b-nav-item>
           <b-nav-item
-            id="locked"
-            to="/locked"
+            id='locked'
+            to='/locked'
           >locked</b-nav-item>
           <b-nav-item
-            href="#"
             disabled
+            href='#'
           >Disabled</b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class='ml-auto'>
           <b-nav-form>
             <b-form-input
-              v-model="test"
-              size="sm"
-              class="mr-sm-2"
-              type="text"
-              placeholder="Search"
+              class='mr-sm-2'
+              placeholder='Search'
+              size='sm'
+              type='text'
+              v-model='test'
             />
             <b-button
-              size="sm"
-              class="my-2 my-sm-0"
-              type="submit"
+              class='my-2 my-sm-0'
+              exact
+              size='sm'
+              to='/'
             >Search</b-button>
           </b-nav-form>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto">
+        <b-navbar-nav class='ml-auto'>
           <b-nav-item-dropdown
-            text="Lang"
             right
+            text='Lang'
           >
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
+            <b-dropdown-item href='#'>EN</b-dropdown-item>
+            <b-dropdown-item href='#'>ES</b-dropdown-item>
+            <b-dropdown-item href='#'>RU</b-dropdown-item>
+            <b-dropdown-item href='#'>FA</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
             <!-- Using button-content slot -->
-            <template slot="button-content">
+            <template slot='button-content'>
               <em>User</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
+            <b-dropdown-item href='#'>Profile</b-dropdown-item>
+            <b-dropdown-item href='#'>Signout</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
-
       </b-collapse>
     </b-navbar>
   </div>
