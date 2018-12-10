@@ -18,5 +18,6 @@ $ yarn start
 # generate static project
 $ yarn run generate
 ```
-
+npm run build
+  gcloud app deploy app.yaml --project="vaclaims-194006"
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
