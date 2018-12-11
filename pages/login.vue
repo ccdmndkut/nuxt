@@ -62,6 +62,11 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+  fetch({ store, redirect }) {
+    if (store.state.user) {
+      return redirect('/')
+    }
+  },
   components: {
     Logo
   },
