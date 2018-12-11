@@ -6,46 +6,62 @@
         bg-variant='light'
         id='card'
       >
-        <b-form-group
-          :invalid-feedback='invalidFeedback'
-          :state='userLength'
-          :valid-feedback='validFeedback'
-          id='fieldset1'
-          label='Enter your username'
-          label-for='user'
+        <b-form
+          @submit="onSubmit"
+          @reset="onReset"
         >
-          <b-form-input
+          <b-form-group
+            :invalid-feedback='invalidFeedback'
             :state='userLength'
-            @blur='clearPass()'
-            id='user'
-            v-model.trim='user'
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          :description='passDesc'
-          :invalid-feedback='invalidFeedbackPass'
-          :state='statePass'
-          :valid-feedback='validFeedbackPass'
-          id='fieldset2'
-          label='Enter your password'
-          label-for='pass'
-        >
-          <b-form-input
-            :disabled='passInpState'
+            :valid-feedback='validFeedback'
+            id='fieldset1'
+            label='Enter your username'
+            label-for='user'
+          >
+            <b-form-input
+              :state='userLength'
+              @blur='clearPass()'
+              id='user'
+              v-model.trim='user'
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            :description='passDesc'
+            :invalid-feedback='invalidFeedbackPass'
             :state='statePass'
-            id='pass'
-            type='password'
-            v-model.trim='pass'
-          ></b-form-input>
-        </b-form-group>
-        <div>
-          <b-button
-            :disabled='loginDisabled'
-            block
-            exact
-            to='/'
-          >Login</b-button>
-        </div>
+            :valid-feedback='validFeedbackPass'
+            id='fieldset2'
+            label='Enter your password'
+            label-for='pass'
+          >
+            <b-form-input
+              :disabled='passInpState'
+              :state='statePass'
+              id='pass'
+              type='password'
+              v-model.trim='pass'
+            ></b-form-input>
+          </b-form-group>
+          <div>
+            <b-button
+              type="submit"
+              :disabled='loginDisabled'
+              variant="primary"
+            >Submit</b-button>
+            <b-button
+              type="reset"
+              variant="danger"
+            >Reset</b-button>
+            <!-- <b-button
+              :disabled='loginDisabled'
+              block
+              exact
+              to='/'
+            >Login</b-button> -->
+          </div>
+
+        </b-form>
+
       </b-card>
     </div>
   </section>
@@ -125,8 +141,11 @@ export default {
     }
   },
   methods: {
-    blurMe() {
-      blur()
+    onSubmit() {
+      console.log('submit')
+    },
+    onReset() {
+      console.log('reset')
     }
   }
 }
@@ -135,7 +154,6 @@ export default {
 <style>
 #card {
   width: 50vw;
-  height: 50vh;
 }
 .container {
   min-height: 100vh;

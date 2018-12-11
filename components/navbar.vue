@@ -5,7 +5,7 @@
       type='dark'
       variant='info'
     >
-      <b-navbar-toggle target='nav_collapse'/>
+      <b-navbar-toggle target='nav_collapse' />
       <b-navbar-brand to='/'>NavBar</b-navbar-brand>
       <b-collapse
         id='nav_collapse'
@@ -38,13 +38,10 @@
               placeholder='Search'
               size='sm'
               type='text'
-              v-model='test'
             />
             <b-button
               class='my-2 my-sm-0'
-              exact
               size='sm'
-              to='/'
             >Search</b-button>
           </b-nav-form>
         </b-navbar-nav>
@@ -75,11 +72,20 @@
 <script>
 export default {
   name: 'NavrBar',
-  data: () => ({
-    home: Boolean,
-    test: 'test',
-    activeClass: ''
-  }),
+  date() {
+    return {
+      home: Boolean,
+      test: 'test',
+      activeClass: '',
+      searchBox: 'tester'
+    }
+  },
+  // data: () => ({
+  //   home: Boolean,
+  //   test: 'test',
+  //   activeClass: '',
+  //   searchBox: ''
+  // }),
   computed: {
     testc() {
       return 'tesc'
@@ -90,6 +96,9 @@ export default {
     this.activeClass = $nuxt.$route.name
   },
   methods: {
+    clearSearch() {
+      this.searchBox = 'hi'
+    },
     classToggle(el, event) {
       console.log(this.activeClass)
     }
