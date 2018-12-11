@@ -1,67 +1,57 @@
 <template>
-  <section class='container'>
+  <section class="container">
     <div>
-      <h1 class='subtitle'>login</h1>
-      <b-card
-        bg-variant='light'
-        id='card'
-      >
-        <b-form
-          @submit="onSubmit"
-          @reset="onReset"
-        >
+      <h1 class="subtitle">login</h1>
+      <b-card 
+        id="card" 
+        bg-variant="light">
+        <b-form 
+          @submit.prevent="onSubmit" 
+          @reset="onReset">
           <b-form-group
-            :invalid-feedback='invalidFeedback'
-            :state='userLength'
-            :valid-feedback='validFeedback'
-            id='fieldset1'
-            label='Enter your username'
-            label-for='user'
+            id="fieldset1"
+            :invalid-feedback="invalidFeedback"
+            :state="userLength"
+            :valid-feedback="validFeedback"
+            label="Enter your username"
+            label-for="user"
           >
             <b-form-input
-              :state='userLength'
-              @blur='clearPass()'
-              id='user'
-              v-model.trim='user'
-            ></b-form-input>
+              id="user"
+              :state="userLength"
+              v-model.trim="user"
+              type="text"
+              autocomplete="username"
+            />
           </b-form-group>
           <b-form-group
-            :description='passDesc'
-            :invalid-feedback='invalidFeedbackPass'
-            :state='statePass'
-            :valid-feedback='validFeedbackPass'
-            id='fieldset2'
-            label='Enter your password'
-            label-for='pass'
+            id="fieldset2"
+            :description="passDesc"
+            :invalid-feedback="invalidFeedbackPass"
+            :state="statePass"
+            :valid-feedback="validFeedbackPass"
+            label="Enter your password"
+            label-for="pass"
           >
             <b-form-input
-              :disabled='passInpState'
-              :state='statePass'
-              id='pass'
-              type='password'
-              v-model.trim='pass'
-            ></b-form-input>
+              id="pass"
+              :disabled="passInpState"
+              :state="statePass"
+              v-model.trim="pass"
+              type="password"
+              autocomplete="current-password"
+            />
           </b-form-group>
           <div>
-            <b-button
-              type="submit"
-              :disabled='loginDisabled'
-              variant="primary"
-            >Submit</b-button>
-            <b-button
-              type="reset"
-              variant="danger"
-            >Reset</b-button>
-            <!-- <b-button
-              :disabled='loginDisabled'
-              block
-              exact
-              to='/'
-            >Login</b-button> -->
+            <b-button 
+              :disabled="loginDisabled" 
+              type="submit" 
+              variant="primary">Submit</b-button>
+            <b-button 
+              type="reset" 
+              variant="danger">Reset</b-button>
           </div>
-
         </b-form>
-
       </b-card>
     </div>
   </section>
@@ -79,23 +69,6 @@ export default {
     pass: '',
     loginDisabled: true
   }),
-
-  watch: {
-    user() {
-      if (this.user.length < 4) {
-        this.loginDisabled = true
-      } else if (this.user.length > 3 && this.pass.length > 3) {
-        this.loginDisabled = false
-      }
-    },
-    pass() {
-      if (this.pass.length > 3) {
-        this.loginDisabled = false
-      } else {
-        this.loginDisabled = true
-      }
-    }
-  },
   computed: {
     userLength() {
       return this.user.length > 3 ? true : false
@@ -138,6 +111,24 @@ export default {
     },
     validFeedbackPass() {
       return this.statePass === true ? 'Login below' : '&nbsp'
+    }
+  },
+
+  watch: {
+    user() {
+      if (this.user.length < 4) {
+        this.loginDisabled = true
+        this.pass = ''
+      } else if (this.user.length > 3 && this.pass.length > 3) {
+        this.loginDisabled = false
+      }
+    },
+    pass() {
+      if (this.pass.length > 3) {
+        this.loginDisabled = false
+      } else {
+        this.loginDisabled = true
+      }
     }
   },
   methods: {
