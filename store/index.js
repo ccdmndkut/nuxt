@@ -3,7 +3,9 @@ import Vuex from 'vuex'
 import firebase, { auth, GoogleProvider } from '@/services/fireinit.js'
 import { firebaseMutations, firebaseAction } from 'vuexfire'
 Vue.use(Vuex)
-require('whatwg-fetch')
+if (process.env.IS_BROWSER) {
+  require('whatwg-fetch')
+}
 const createStore = () => {
   return new Vuex.Store({
     state: {
