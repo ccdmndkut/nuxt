@@ -481,6 +481,7 @@ module.exports = {
   */
   build: {
     optimizeCSS: true,
+    publicPath: 'https://vaclaims-194006.appspot.com',
     /*
     ** You can extend webpack config here
     */
