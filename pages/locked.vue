@@ -1,9 +1,12 @@
 <template>
-  <section class="container">
+  <section v-if="user" class="container">
     <div>
-      <h1 class="subtitle">
-        {{ user.email }}
-      </h1>
+        <h1 class="subtitle">
+          {{ user.email }} 
+        </h1>
+               <p class="subtitle">
+          {{ user.refreshToken }} 
+        </p>
     </div>
   </section>
 </template>
@@ -12,8 +15,18 @@
 import { mapState } from 'vuex'
 export default {
   components: {},
+  data() {
+    return {
+      userName: this.user,
+      pass: '',
+      loginDisabled: true
+    }
+  },
   computed: {
     ...mapState(['user'])
+  },
+  mounted() {
+    // console.log(this.user.user.refreshToken)
   }
 }
 </script>
@@ -43,6 +56,7 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+  word-break: break-all;
 }
 
 .links {

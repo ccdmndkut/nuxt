@@ -5,7 +5,7 @@
       type="dark"
       variant="info"
     >
-      <b-navbar-toggle target="nav_collapse" />
+      <b-navbar-toggle target="nav_collapse"/>
       <b-navbar-brand to="/">NavBar</b-navbar-brand>
       <b-collapse
         id="nav_collapse"
@@ -97,10 +97,13 @@ export default {
   },
   methods: {
     signOut() {
+      // window.location.reload()
+
       this.$store
-        .dispatch('resetUser')
+        .dispatch('userLogout')
         .then(() => {
-          this.$router.push('/login')
+          window.location.reload()
+          // this.$router.push('/login')
         })
         .catch(error => {
           console.log(error)

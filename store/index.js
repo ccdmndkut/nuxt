@@ -9,8 +9,8 @@ if (process.env.IS_BROWSER) {
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      user: null,
-      account: null
+      user: null
+      // account: null
     },
     getters: {
       activeUser: (state, getters) => {
@@ -50,7 +50,7 @@ const createStore = () => {
       },
       resetUser({ commit }) {
         commit('SET_USER', null)
-        window.location.reload()
+        // this.$nuxt.$loading.start()
       },
       userLogout({ state }) {
         var self = this

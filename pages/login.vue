@@ -159,6 +159,9 @@ export default {
     onReset() {
       console.log('reset')
     }
+  },
+  mounted() {
+    console.log('mounted login')
   }
 }
 </script>
