@@ -2,7 +2,7 @@
   <section class="container">
     <div>
       <h1 class="subtitle">
-        {{user.email}}
+        {{ user.email }}
       </h1>
     </div>
   </section>
