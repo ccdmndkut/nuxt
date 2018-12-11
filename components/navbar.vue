@@ -98,7 +98,7 @@ export default {
   methods: {
     signOut() {
       this.$store
-        .dispatch('userLogout')
+        .dispatch('resetUser')
         .then(() => {
           this.$router.push('/login')
         })
