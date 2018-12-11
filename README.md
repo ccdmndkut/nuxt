@@ -21,3 +21,5 @@ $ yarn run generate
 npm run build
   gcloud app deploy app.yaml --project="vaclaims-194006"
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+https://github.com/james2doyle/nuxt-firebase-auth/blob/master/store/index.js
+https://github.com/james2doyle/nuxt-firebase-auth/blob/master/components/account/LoginForm.vue

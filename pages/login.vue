@@ -5,9 +5,7 @@
       <b-card 
         id="card" 
         bg-variant="light">
-        <b-form 
-          @submit.prevent="onSubmit" 
-          @reset="onReset">
+        <b-form>
           <b-form-group
             id="fieldset1"
             :invalid-feedback="invalidFeedback"
@@ -45,8 +43,8 @@
           <div>
             <b-button 
               :disabled="loginDisabled" 
-              type="submit" 
-              variant="primary">Submit</b-button>
+              variant="primary"
+              @click="emailLogin()">Submit</b-button>
             <b-button 
               type="reset" 
               variant="danger">Reset</b-button>
@@ -64,11 +62,13 @@ export default {
   components: {
     Logo
   },
-  data: () => ({
-    user: '',
-    pass: '',
-    loginDisabled: true
-  }),
+  data() {
+    return {
+      user: '',
+      pass: '',
+      loginDisabled: true
+    }
+  },
   computed: {
     userLength() {
       return this.user.length > 3 ? true : false
@@ -132,8 +132,20 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      console.log('submit')
+    emailLogin() {
+      var self = this
+      this.$store
+        .dispatch('signInWithEmail', {
+          email: self.user,
+          password: self.pass
+        })
+        .then(() => {
+          self.user = ''
+          self.pass = ''
+        })
+        .catch(e => {
+          console.log(e.message)
+        })
     },
     onReset() {
       console.log('reset')
