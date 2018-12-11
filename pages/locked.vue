@@ -1,16 +1,20 @@
 <template>
   <section class="container">
     <div>
-      <h1 class="title">
-        locked
+      <h1 class="subtitle">
+        {{user.email}}
       </h1>
     </div>
   </section>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  components: {}
+  components: {},
+  computed: {
+    ...mapState(['user'])
+  }
 }
 </script>
 

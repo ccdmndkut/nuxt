@@ -2,9 +2,10 @@
   <section class="container">
     <div>
       <h1 class="subtitle">login</h1>
-      <b-card 
-        id="card" 
-        bg-variant="light">
+      <b-card
+        id="card"
+        bg-variant="light"
+      >
         <b-form>
           <b-form-group
             id="fieldset1"
@@ -41,13 +42,15 @@
             />
           </b-form-group>
           <div>
-            <b-button 
-              :disabled="loginDisabled" 
+            <b-button
+              :disabled="loginDisabled"
               variant="primary"
-              @click="emailLogin()">Submit</b-button>
-            <b-button 
-              type="reset" 
-              variant="danger">Reset</b-button>
+              @click="emailLogin()"
+            >Submit</b-button>
+            <b-button
+              type="reset"
+              variant="danger"
+            >Reset</b-button>
           </div>
         </b-form>
       </b-card>
@@ -142,6 +145,7 @@ export default {
         .then(() => {
           self.user = ''
           self.pass = ''
+          this.$router.push('/locked')
         })
         .catch(e => {
           console.log(e.message)

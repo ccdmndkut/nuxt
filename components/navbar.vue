@@ -62,7 +62,7 @@
               <em>User</em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
+            <b-dropdown-item @click="signOut">Signout</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -96,6 +96,16 @@ export default {
     this.activeClass = $nuxt.$route.name
   },
   methods: {
+    signOut() {
+      this.$store
+        .dispatch('userLogout')
+        .then(() => {
+          this.$router.push('/login')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     clearSearch() {
       this.searchBox = 'hi'
     },

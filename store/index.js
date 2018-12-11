@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import firebase, { auth, GoogleProvider } from '@/services/fireinit.js'
+import { firebaseMutations, firebaseAction } from 'vuexfire'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -12,32 +13,39 @@ const createStore = () => {
         return state.user
       }
     },
-    mutations: {
-      setUser(state, payload) {
-        state.user = payload
-      }
-    },
+
     actions: {
       autoSignIn({ commit }, payload) {
         commit('setUser', payload)
       },
-
       signInWithEmail({ state }, account) {
         return firebase
           .auth()
           .signInWithEmailAndPassword(account.email, account.password)
           .then(user => {
-            return this.dispatch('setUser', user)
+            console.log(user)
+            state.user = user
+            // return this.dispatch('setUser', user)
           })
       },
-
-      signOut({ commit }) {
-        auth
+      resetUser({ state }) {
+        state.user = null
+        window.location.reload()
+      },
+      userLogout({ state }) {
+        var self = this
+        return firebase
+          .auth()
           .signOut()
           .then(() => {
-            commit('setUser', null)
+            self.dispatch('resetUser')
           })
-          .catch(err => console.log(error))
+      }
+    },
+    mutations: {
+      ...firebaseMutations,
+      setUser(state, user) {
+        state.user = user
       }
     }
   })
