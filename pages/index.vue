@@ -26,7 +26,7 @@ export default {
           }
         ]
       })
-    }, 2500)
+    }, 500)
   },
   // data() {
   //   return {

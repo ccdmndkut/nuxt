@@ -1,12 +1,11 @@
 <template>
-  <section v-if="user" class="container">
+  <section class="container">{{localComputed}}
     <div>
-        <h1 class="subtitle">
-          {{ user.email }} 
-        </h1>
-               <p class="subtitle">
-          {{ user.refreshToken }} 
-        </p>
+      <h1 class="subtitle">
+        {{userMsg}}
+      </h1>
+      <p class="subtitle">
+      </p>
     </div>
   </section>
 </template>
@@ -17,17 +16,24 @@ export default {
   components: {},
   data() {
     return {
-      userName: this.user,
-      pass: '',
-      loginDisabled: true
+      msg: ' is logged in'
     }
   },
-  computed: {
-    ...mapState(['user'])
-  },
-  mounted() {
-    // console.log(this.user.user.refreshToken)
-  }
+
+  computed: mapState({
+    // arrow functions can make the code very succinct!
+    email: state => state.user.user.email,
+
+    // passing the string value 'count' is same as `state => state.count`
+    userb: 'user',
+
+    // to access local state with `this`, a normal function must be used
+    userMsg(state) {
+      return state.user.user.email + this.msg
+    }
+  }),
+
+  mounted() {}
 }
 </script>
 
