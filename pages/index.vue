@@ -2,8 +2,8 @@
   <div class="container">
     <div>
       <b-alert show>{{ storeMsg }}</b-alert>
-      <b-alert show>{{ count }}</b-alert>
       <b-alert show>{{ stateStr }}</b-alert>
+      <b-button @click="rl">{{count}}</b-button>
 
       <logo :msg="msg"/>
     </div>
@@ -18,6 +18,12 @@ export default {
     Logo
   },
   props: {},
+  methods: {
+    rl() {
+      var r = this.$route
+      console.log(r)
+    }
+  },
   mounted() {
     console.log(mapState.toString())
   },
