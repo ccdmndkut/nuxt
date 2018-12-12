@@ -1,5 +1,5 @@
 <template>
-  <section class="container">{{localComputed}}
+  <section class="container">
     <div>
       <h1 class="subtitle">
         {{userMsg}}

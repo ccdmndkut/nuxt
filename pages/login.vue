@@ -161,7 +161,10 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted login')
+    var curUser = this.$store.state.user
+    if (curUser) {
+      console.log(curUser.user)
+    }
   }
 }
 </script>
