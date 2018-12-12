@@ -1,55 +1,55 @@
 <template>
-  <section class="container">
+  <section class='container'>
     <div>
-      <h1 class="subtitle">login</h1>
+      <h1 class='subtitle'>login</h1>
       <b-card
-        id="card"
-        bg-variant="light"
+        bg-variant='light'
+        id='card'
       >
         <b-form>
           <b-form-group
-            id="fieldset1"
-            :invalid-feedback="invalidFeedback"
-            :state="userLength"
-            :valid-feedback="validFeedback"
-            label="Enter your username"
-            label-for="user"
+            :invalid-feedback='invalidFeedback'
+            :state='userLength'
+            :valid-feedback='validFeedback'
+            id='fieldset1'
+            label='Enter your username'
+            label-for='user'
           >
             <b-form-input
-              id="user"
-              :state="userLength"
-              v-model.trim="user"
-              type="text"
-              autocomplete="username"
+              :state='userLength'
+              autocomplete='username'
+              id='user'
+              type='text'
+              v-model.trim='user'
             />
           </b-form-group>
           <b-form-group
-            id="fieldset2"
-            :description="passDesc"
-            :invalid-feedback="invalidFeedbackPass"
-            :state="statePass"
-            :valid-feedback="validFeedbackPass"
-            label="Enter your password"
-            label-for="pass"
+            :description='passDesc'
+            :invalid-feedback='invalidFeedbackPass'
+            :state='statePass'
+            :valid-feedback='validFeedbackPass'
+            id='fieldset2'
+            label='Enter your password'
+            label-for='pass'
           >
             <b-form-input
-              id="pass"
-              :disabled="passInpState"
-              :state="statePass"
-              v-model.trim="pass"
-              type="password"
-              autocomplete="current-password"
+              :disabled='passInpState'
+              :state='statePass'
+              autocomplete='current-password'
+              id='pass'
+              type='password'
+              v-model.trim='pass'
             />
           </b-form-group>
           <div>
             <b-button
-              :disabled="loginDisabled"
-              variant="primary"
-              @click="emailLogin()"
+              :disabled='loginDisabled'
+              @click='emailLogin()'
+              variant='primary'
             >Submit</b-button>
             <b-button
-              type="reset"
-              variant="danger"
+              type='reset'
+              variant='danger'
             >Reset</b-button>
           </div>
         </b-form>
@@ -150,7 +150,7 @@ export default {
         .then(() => {
           self.user = ''
           self.pass = ''
-          this.$router.push('/locked')
+          this.$router.push('/')
         })
         .catch(e => {
           console.log(e.message)

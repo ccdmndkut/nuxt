@@ -91,7 +91,6 @@ export default {
       return 'tesc'
     }
   },
-  computed: {},
   mounted() {
     this.activeClass = $nuxt.$route.name
   },

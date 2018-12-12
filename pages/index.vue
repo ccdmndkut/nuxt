@@ -1,24 +1,39 @@
 <template>
-  <section class="container">
+  <section class='container'>
     <div>
-      <logo />
-      <h1 class="title">
-        HOME
-      </h1>
-      <h2 class="subtitle">
-        nuxt
-      </h2>
+      <h1 class='title'>HOME</h1>
+      <h2 class='subtitle'>nuxt</h2>
+      <PostList :posts='loadedPosts'></PostList>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import PostList from '~/components/PostList.vue'
 export default {
   components: {
-    Logo
-  }
+    PostList
+  },
+  asyncData(context, callback) {
+    console.log('async executed')
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+          {
+            id: '1',
+            title:
+              'post 1 Told vet on 11/28 I would have TDIU recon done this week TDIU NOD deadline Jan 30, 2018 Check myhealthEvet with pass eh txt me Follow-up with Vet on supervisor letter  HAVE VET SIGN BLANK FORMS BEFORE LEAVING Me: Draft letter for old supervisor THIS WEEK. See notes in folder. HOLDING TDIU RECON UNTIL NOVEMBER 25 / 5 YEAR 70 PTSD.Vet: To send myhealth pass (UN: markadams66), go to VA for recs, call VA to update address. TDIU NOD, Fibro sep ratings NOD. Other? 30 day f/u congress expedite. Have forms vet signed blank'
+          }
+        ]
+      })
+    }, 2500)
+  },
+  // data() {
+  //   return {
+  //     loadedPosts: []
+  //   }
+  // },
+  created() {}
 }
 </script>
 

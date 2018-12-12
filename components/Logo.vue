@@ -1,8 +1,17 @@
 <template>
-  <div>
-    logo download svg plugin
-  </div>
+  <div>logo</div>
 </template>
+<script>
+export default {
+  name: 'Logo',
+  date() {
+    return {}
+  },
 
+  computed: {},
+  mounted() {},
+  methods: {}
+}
+</script>
 <style>
 </style>
