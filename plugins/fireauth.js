@@ -6,6 +6,7 @@ export default context => {
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged(user => {
       if (user) {
+        console.log(user)
         return resolve(store.commit('setUser', user))
       }
       return resolve()
