@@ -3,7 +3,7 @@
     <div>
       <h1 class='title'>HOME</h1>
       <h2 class='subtitle'>nuxt</h2>
-      <PostList :posts='loadedPosts'></PostList>
+      <PostList :posts='loadedPosts' />
     </div>
   </section>
 </template>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase, { auth, GoogleProvider } from '@/services/fireinit.js'
 import { firebaseMutations, firebaseAction } from 'vuexfire'
+import { getUserFromCookie, getUserFromSession } from '@/helpers'
 Vue.use(Vuex)
 if (process.env.IS_BROWSER) {
   require('whatwg-fetch')
@@ -27,11 +28,21 @@ const createStore = () => {
       }
     },
     actions: {
-      nuxtServerInit({ commit }, { req }) {
-        if (req.session && req.session.authUser) {
-          commit('SET_USER', req.session.authUser)
+      async nuxtServerInit({ dispatch }, { req }) {
+        const user = getUserFromCookie(req)
+        if (user) {
+          await dispatch('modules/user/setUSER', {
+            name: user.name,
+            email: user.email,
+            uid: user.user_id
+          })
         }
       },
+      // nuxtServerInit({ commit }, { req }) {
+      //   if (req.session && req.session.authUser) {
+      //     commit('SET_USER', req.session.authUser)
+      //   }
+      // },
       autoSignIn({ commit }, payload) {
         commit('setUser', payload)
       },

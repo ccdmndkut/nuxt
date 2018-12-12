@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'universal',
+  mode: 'spa',
   head: {
     title: pkg.name,
     meta: [
@@ -11,10 +11,22 @@ module.exports = {
     ]
   },
 
+  env: {
+    FIREBASE: {
+      API_KEY: 'AIzaSyDMbILM1a366tYFM3-nOLwCUXapJ8ETqmw',
+      DATABASE_NAME: 'trash',
+      PROJECT_ID: 'vaclaims-194006',
+      SENDER_ID: '524576132881'
+    }
+  },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  layoutTransition: {
+    name: 'layout',
+    mode: 'out-in'
+  },
+  loading: { color: '#3B8070' },
   router: {
     middleware: 'router-auth'
   },
@@ -55,8 +67,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
+      if (ctx.dev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
