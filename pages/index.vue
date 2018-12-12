@@ -1,39 +1,29 @@
 <template>
-  <section class="container">
+  <div class="container">
     <div>
-      <logo/>
-      <h1 class="title">
-        nuxt
-      </h1>
-      <h2 class="subtitle">
-        nuxt
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <logo :msg="msg" />
     </div>
-  </section>
+  </div>
+
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+import { mapState } from 'vuex'
 export default {
   components: {
     Logo
+  },
+  props: {},
+  data() {
+    return {
+      msg: 'i am a message'
+    }
   }
 }
 </script>
 
 <style>
-
 .container {
   min-height: 100vh;
   display: flex;
