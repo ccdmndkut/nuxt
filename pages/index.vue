@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <div>
-      <logo :msg="msg" />
+      <b-alert show>{{ storeMsg }}</b-alert>
+      <b-alert show>{{ count }}</b-alert>
+      <b-alert show>{{ stateStr }}</b-alert>
+
+      <logo :msg="msg"/>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -15,11 +18,16 @@ export default {
     Logo
   },
   props: {},
+  mounted() {
+    console.log(mapState.toString())
+  },
   data() {
     return {
-      msg: 'i am a message'
+      msg: 'i am a message',
+      stateStr: mapState.toString()
     }
-  }
+  },
+  computed: mapState(['storeMsg', 'count'])
 }
 </script>
 
