@@ -4,6 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       count: 1,
+      storeMsg: 'Message from store - ',
       todos: [
         { id: 1, text: '...', done: true },
         { id: 2, text: '...', done: false }
@@ -12,6 +13,13 @@ const createStore = () => {
     getters: {
       doneTodos: state => {
         return state.todos.filter(todo => todo.done)
+      },
+      strRepeat: state => {
+        return state.storeMsg.repeat(201)
+      },
+      strRepeatCount: (state, getters) => {
+        var c = getters.strRepeat
+        return c.length
       }
     },
     mutations: {
