@@ -4,7 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       count: 'Go to eBenefits',
-      storeMsg: 'Did you mean eBenefits.va.gov',
+      storeMsg: 'Did you mean eBenefits.va.gov?',
       todos: [
         { id: 1, text: '...', done: true },
         { id: 2, text: '...', done: false }

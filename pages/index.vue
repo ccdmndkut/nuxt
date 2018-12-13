@@ -1,13 +1,27 @@
 <template>
-  <div class="container">
-    <div>
+  <div>
+    <div class="container">
       <div>
-        <flag class="flag"></flag>
+        <div>
+          <flag class="flag"></flag>
+        </div>
+        <div class="subtitle">{{ storeMsg }}</div>
+        <b-button
+          size="lg"
+          class="large"
+          href="https://www.ebenefits.va.gov/ebenefits/homepage"
+        >{{count}}</b-button>
+        <!-- <logo :msg="msg"/> -->
       </div>
-      <div class="subtitle">{{ storeMsg }}</div>
-      <b-button href="https://www.ebenefits.va.gov/ebenefits/homepage">{{count}}</b-button>
-      <!-- <logo :msg="msg"/> -->
     </div>
+    <!-- <div>
+      <b-navbar type="dark" variant="info">
+        <b-navbar-brand href="#">NavBar</b-navbar-brand>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item href="#">Link</b-nav-item>
+        </b-navbar-nav>
+      </b-navbar>
+    </div>-->
   </div>
 </template>
 
@@ -30,15 +44,20 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #fafafa;
+}
 .flag {
-  height: 200px;
+  width: 300px;
+  padding-bottom: 30px;
 }
 .container {
-  min-height: 100vh;
+  min-height: calc(100vh - 56px);
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   text-align: center;
+  padding-top: 56px;
 }
 
 .title {
@@ -57,6 +76,7 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+  width: 380px;
 }
 
 .links {
