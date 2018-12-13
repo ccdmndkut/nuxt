@@ -41,6 +41,7 @@ module.exports = {
     'bootstrap-vue/nuxt',
     'nuxt-svg-loader'
   ],
+
   /*
   ** Axios module configuration
   */
@@ -52,6 +53,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
