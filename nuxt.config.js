@@ -67,6 +67,9 @@ module.exports = {
           }
         })
       }
+      exports.node = {
+        fs: 'empty'
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="subtitle">
-    {{msg}}
+    {{ msg }}
   </div>
 </template>
 
