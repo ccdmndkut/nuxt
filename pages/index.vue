@@ -1,32 +1,24 @@
 <template>
   <div class="container">
     <div>
-      <b-alert show>{{ storeMsg }}</b-alert>
-      <b-alert show>{{ stateStr }}</b-alert>
-      <b-button @click="rl">{{count}}</b-button>
-
-      <logo :msg="msg"/>
+      <div>
+        <flag class="flag"></flag>
+      </div>
+      <div class="subtitle">{{ storeMsg }}</div>
+      <b-button href="https://www.ebenefits.va.gov/ebenefits/homepage">{{count}}</b-button>
+      <!-- <logo :msg="msg"/> -->
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
 import { mapState } from 'vuex'
+import flag from '~/static/flag.svg'
 export default {
-  components: {
-    Logo
-  },
+  components: { flag },
   props: {},
-  methods: {
-    rl() {
-      var r = this.$route
-      console.log(r)
-    }
-  },
-  mounted() {
-    console.log(mapState.toString())
-  },
+  methods: {},
+  mounted() {},
   data() {
     return {
       msg: 'i am a message',
@@ -38,6 +30,9 @@ export default {
 </script>
 
 <style>
+.flag {
+  height: 200px;
+}
 .container {
   min-height: 100vh;
   display: flex;

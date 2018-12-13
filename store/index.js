@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      count: 1,
-      storeMsg: 'Message from store - ',
+      count: 'Go to eBenefits',
+      storeMsg: 'Did you mean eBenefits.va.gov',
       todos: [
         { id: 1, text: '...', done: true },
         { id: 2, text: '...', done: false }
