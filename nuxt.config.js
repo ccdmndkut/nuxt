@@ -1,9 +1,4 @@
 const pkg = require('./package')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob-all')
-const path = require('path')
-const purgecss = require('@fullhuman/postcss-purgecss')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'universal',
@@ -59,50 +54,13 @@ module.exports = {
   */
   build: {
     extractCSS: true,
-    postcss: {
-      plugins: [
-        purgecss({
-          content: [
-            './pages/**/*.vue',
-            './layouts/**/*.vue',
-            './components/**/*.vue'
-          ],
-          whitelist: ['html', 'body']
-        })
-      ]
-    },
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      // Remove unused CSS using purgecss. See https://github.com/FullHuman/purgecss
-      // for more information about purgecss.
-      config.plugins.push(
-        new PurgecssPlugin({
-          paths: glob.sync([
-            path.join(__dirname, './pages/**/*.vue'),
-            path.join(__dirname, './layouts/**/*.vue'),
-            path.join(__dirname, './components/**/*.vue')
-          ]),
-          whitelist: ['html', 'body']
-        }),
-        new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: '[name].css',
-          chunkFilename: '[id].css'
-        })
-      )
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
-          test: /\.css$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            'css-loader'
-          ],
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',

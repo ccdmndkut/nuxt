@@ -1,7 +1,7 @@
 {
-  "name": "nuxt",
+  "name": "v2v",
   "version": "1.0.0",
-  "description": "nuxt",
+  "description": "V2V",
   "author": "clc",
   "private": true,
   "scripts": {
