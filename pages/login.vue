@@ -1,24 +1,48 @@
 <template>
   <div>
-    <div
-      v-if="!$store.state.authUser"
-      class="container"
-    >
-      <b-link to="login">
-        <div id="sl"></div>
-      </b-link>
-
+    <div v-if="!$store.state.authUser">
       <div>
-        <flag class="flag"></flag>
-
-        <div class="subtitle">{{ storeMsg }}</div>
-        <b-button
-          size="lg"
-          class="large"
-          href="https://www.ebenefits.va.gov/ebenefits/homepage"
-        >{{count}}</b-button>
-        <!-- <logo :msg="msg"/> -->
+        <b-link to="/">
+          <flag class="flag"></flag>
+        </b-link>
       </div>
+      <div class="container">
+        <form @submit.prevent="login">
+          <p
+            v-if="formError"
+            class="error"
+          >
+            {{ formError }}
+          </p>
+          <p>Username: <input
+              v-model="formUsername"
+              type="text"
+              name="username"
+            ></p>
+          <p>Password: <input
+              v-model="formPassword"
+              type="password"
+              name="password"
+            ></p>
+          <button type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+
+    </div>
+    <div v-else>
+      Hello {{ $store.state.authUser.username }}!
+      <pre>I am the secret content, I am shown only when the use is connected.</pre>
+      <p><i>You can also refresh this page, you'll still be connected!</i></p>
+      <button @click="logout">
+        Logout
+      </button>
+      <p>
+        <NuxtLink to="/secret">
+          Super secret page
+        </NuxtLink>
+      </p>
     </div>
 
     <!-- <div>
@@ -75,25 +99,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   background-color: #fafafa;
-}
-#sl {
-  width: 20px;
-  height: 20px;
-  background-color: yellow;
-  position: absolute;
-  top: 150px;
-  left: 50vw;
-  opacity: 0;
-}
-#sl:hover {
-  cursor: default;
+  overflow: hidden;
 }
 .flag {
   width: 300px;
   padding-bottom: 30px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding-top: 56px;
 }
 .container {
   min-height: calc(100vh - 56px);
@@ -101,7 +117,6 @@ body {
   justify-content: center;
   /* align-items: center; */
   text-align: center;
-  padding-top: 56px;
 }
 
 .title {
