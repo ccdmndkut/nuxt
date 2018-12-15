@@ -1,5 +1,6 @@
 const pkg = require('./package')
-
+const bodyParser = require('body-parser')
+const session = require('express-session')
 module.exports = {
   mode: 'universal',
 
@@ -41,7 +42,20 @@ module.exports = {
     'bootstrap-vue/nuxt',
     'nuxt-svg-loader'
   ],
-
+  serverMiddleware: [
+    // body-parser middleware
+    bodyParser.json(),
+    // session middleware
+    session({
+      secret: 'super-secret-key',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 60000 }
+    }),
+    // Api middleware
+    // We add /api/login & /api/logout routes
+    '~/api'
+  ],
   /*
   ** Axios module configuration
   */
@@ -53,6 +67,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    optimizeCSS: true,
     extractCSS: true,
     /*
     ** You can extend webpack config here
