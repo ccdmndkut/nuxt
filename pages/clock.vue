@@ -1,128 +1,125 @@
 <template>
-  <div id="cont">
-    <div id="text-clock">
-      <p>{{wordSec}}</p>
-      <!-- line 1 -->
-      <p id="line-1">
-        <span
-          id="it"
-          class="active"
-        >IT</span>L<span
-          id="is"
-          class="active secblur on"
-        >IS</span>AS<span id="tgif">GTFI</span>
-      </p>
-      <!-- line 2 -->
-      <p id="line-2">AC<span
-          id="quarter"
-          class="desc"
-        >QUARTER</span>BS</p>
-      <!-- line 3 -->
-      <p>
-        <span
-          id="twenty"
-          class="desc"
-        >TWENTY</span><span
-          id="five"
-          class="desc"
-        >FIVE</span>X
-      </p>
-      <!-- line 4 -->
-      <p>
-        <span
-          id="half"
-          class="desc"
-        >HALF</span>B<span
-          id="ten"
-          class="desc"
-        >TEN</span>F<span
-          id="to"
-          class="desc"
-        >TO</span>
-      </p>
-      <!-- line 5 -->
-      <p>
-        <span
-          id="past"
-          class="desc"
-        >PAST</span>ERU<span
-          id="nine"
-          class="hr"
-        >NINE</span>
-      </p>
-      <!-- line 6 -->
-      <p>
-        <span
-          id="one"
-          class="hr"
-        >ONE</span><span
-          id="six"
-          class="hr"
-        >SIX</span><span
-          id="three"
-          class="hr"
-        >THREE</span>
-      </p>
-      <!-- line 7 -->
-      <p id="line-7">
-        <span
-          id="four"
-          class="hr"
-        >FOUR</span><span
-          id="five-hr"
-          class="hr"
-        >FIVE</span><span
-          id="two"
-          class="hr"
-        >TWO</span>
-      </p>
-      <!-- line 8 -->
-      <p id="line-8">
-        <span
-          id="eight"
-          class="hr"
-        >EIGHT</span><span
-          id="eleven"
-          class="hr"
-        >ELEVEN</span>
-      </p>
-      <!-- line 9 -->
-      <p id="line-9">
-        <span
-          id="seven"
-          class="hr"
-        >SEVEN</span><span
-          id="twelve"
-          class="hr"
-        >TWELVE</span>
-      </p>
-      <!-- line 10 -->
-      <p id="line-10">
-        <span
-          id="ten-hr"
-          class="hr"
-        >TEN</span>SE<span
-          id="oclock"
-          class="desc"
-        >OCLOCK</span>
-      </p>
-      <!-- line 11 -->
-      <p id="line-11"><span
-          id="midnight"
-          class="hr"
-        >MIDNIGHT</span></p>
-    </div>
+  <div id="text-clock">
+    <!-- line 1 -->
+    <p id="line-1">{{randsplit(6)}}<span
+        id="it"
+        class="active"
+      >IT</span>{{randsplit(1)}}<span
+        id="is"
+        class="active"
+      >IS</span>{{randsplit(2)}}<span id="tgif">GTFI</span>
+    </p>
+    <!-- line 2 -->
+    <p id="line-2">{{randsplit(3)}}<span
+        id="quarter"
+        class="desc"
+      >QUARTER</span>{{randsplit(5)}}</p>
+    <!-- line 3 -->
+    <p>{{randsplit(3)}}<span
+        id="twenty"
+        class="desc"
+      >TWENTY</span><span
+        id="five"
+        class="desc"
+      >FIVE</span>{{randsplit(3)}}
+    </p>
+    <!-- line 4 -->
+    <p>
+      {{randsplit(3)}}<span
+        id="half"
+        class="desc"
+      >HALF</span>{{randsplit(2)}}<span
+        id="ten"
+        class="desc"
+      >TEN</span>{{randsplit(2)}}<span
+        id="to"
+        class="desc"
+      >TO</span>
+    </p>
+    <!-- line 5 -->
+    <p>
+      {{randsplit(4)}}<span
+        id="past"
+        class="desc"
+      >PAST</span>{{randsplit(3)}}<span
+        id="nine"
+        class="hr"
+      >NINE</span>
+    </p>
+    <!-- line 6 -->
+    <p>
+      {{randsplit(1)}}<span
+        id="one"
+        class="hr"
+      >ONE</span>{{randsplit(3)}}<span
+        id="six"
+        class="hr"
+      >SIX</span>{{randsplit(3)}}<span
+        id="three"
+        class="hr"
+      >THREE</span>
+    </p>
+    <!-- line 7 -->
+    <p id="line-7">
+      {{randsplit(3)}}<span
+        id="four"
+        class="hr"
+      >FOUR</span><span
+        id="five-hr"
+        class="hr"
+      >FIVE</span>{{randsplit(3)}}<span
+        id="two"
+        class="hr"
+      >TWO</span>
+    </p>
+    <!-- line 8 -->
+    <p id="line-8">
+      {{randsplit(3)}}<span
+        id="eight"
+        class="hr"
+      >EIGHT</span>{{randsplit(3)}}<span
+        id="eleven"
+        class="hr"
+      >ELEVEN</span>
+    </p>
+    <!-- line 9 -->
+    <p id="line-9">{{randsplit(3)}}<span
+        id="seven"
+        class="hr"
+      >SEVEN</span>{{randsplit(3)}}<span
+        id="twelve"
+        class="hr"
+      >TWELVE</span>
+    </p>
+    <!-- line 10 -->
+    <p id="line-10">
+      <span
+        id="ten-hr"
+        class="hr"
+      >TEN</span>{{randsplit(3)}}<span
+        id="oclock"
+        class="desc"
+      >OCLOCK</span>{{randsplit(3)}}
+    </p>
+    <!-- line 11 -->
+    <p id="line-11"><span
+        id="midnight"
+        class="hr"
+      >MIDNIGHT</span></p>
+    <p id='sec'>{{secFillL}}<span class="active desc sec">{{wordSec}}</span>{{secFillR}}</p>
+
   </div>
 </template>
 
 <script>
+const cryptoRandomString = require('crypto-random-string')
+
 var converter = require('number-to-words')
 var moment = require('moment')
 export default {
-  layout: 'clock',
+  layout: 'clockLayout',
   name: 'App',
   mounted() {
-    var blur = this.blur
     var self = this
     setInterval(() => {
       self.mTime()
@@ -130,25 +127,36 @@ export default {
     setInterval(function() {
       self.textClock()
     }, 10000)
-    setInterval(function() {
-      blur()
-    }, 1000)
     this.textClock()
-    // this.blur();
   },
   data() {
     return {
       time: '',
       sec: '',
-      wordSec: ''
+      wordSec: '',
+      rand: ''
     }
   },
   computed: {
-    newM() {
-      //   var t = this.mTime
-      return moment().format('ss')
+    secLen() {
+      return this.wordSec.length
     },
-
+    secFillL() {
+      var filler = cryptoRandomString(6)
+      var len = this.secLen
+      var space = 11 - len
+      var div = Math.floor(space / 2)
+      var fillL = filler.substr(0, div)
+      return fillL
+    },
+    secFillR() {
+      var filler = cryptoRandomString(6)
+      var len = this.secLen
+      var space = 11 - len
+      var div = Math.ceil(space / 2)
+      var fillR = filler.substr(0, div)
+      return fillR
+    },
     seconds() {
       const arr = []
       let i
@@ -165,6 +173,11 @@ export default {
       this.time = new moment().format()
       this.sec = new moment().format('ss')
       this.wordSec = converter.toWords(this.sec)
+      this.rand = cryptoRandomString(100)
+    },
+    randsplit(n) {
+      var r = cryptoRandomString(n)
+      return r
     },
     blur() {
       var hr = document.getElementById('is')
@@ -176,14 +189,7 @@ export default {
       } else {
         hr.classList.add('on')
         hr.classList.add('secblur')
-
-        console.log('off')
       }
-      // hr.classList.add("secblur");
-      // this.bluroff();
-      // setTimout(function() {
-      //   this.bluroff();
-      // }, 1000);
     },
     bluroff() {
       var hr = document.getElementById('is')
@@ -271,46 +277,36 @@ export default {
       var hra = document.querySelectorAll('hr')
       for (let item of hra) {
         item.remove('active')
-        // console.log(item);
       }
-      // hr.remove("active");
       var clab = document.querySelectorAll(classes)
-      // console.log(clab);
-      // clab.classList.add("active");
-      // clab.add("active");
       for (let item of clab) {
         item.classList.add('active')
-        // console.log(item);
       }
-      // cl.add("active");
     },
     updateDesc(classes) {
       var hr = document.querySelectorAll('desc')
-      // console.log(hr);
       for (let item of hr) {
         item.remove('active')
-        // console.log(item);
       }
       var cl = document.querySelectorAll(classes)
-      // console.log(cl);
-      // cl.setAttribute("id", "active");
       for (let item of cl) {
         item.classList.add('active')
-        // console.log(item);
       }
-      // cl.add("active");
     }
   }
 }
 </script>
 
 <style scoped>
-.secblur {
-  filter: blur(20px);
+#cont {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
+
 #midnight {
   color: #000;
-  letter-spacing: 23px;
 }
 
 #it,
@@ -322,9 +318,14 @@ span.active {
   -moz-transition: color 0.4s ease-out;
   -webkit-transition: color 0.4s ease-out;
 }
-
+span.sec {
+  color: orangered !important;
+  transition: color 0.4s ease-out;
+  -ms-transition: color 0.4s ease-out;
+  -moz-transition: color 0.4s ease-out;
+  -webkit-transition: color 0.4s ease-out;
+}
 #text-clock {
-  width: 242px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -334,32 +335,6 @@ span.active {
   transform: translate(-50%, -50%);
   text-transform: uppercase;
 }
-
-#line-1,
-#line-1 span {
-  letter-spacing: 13.9px;
-}
-#line-2,
-#line-2 span {
-  letter-spacing: 11.3px;
-}
-#line-7,
-#line-7 span {
-  letter-spacing: 11.8px;
-}
-#line-8,
-#line-8 span {
-  letter-spacing: 12.3px;
-}
-#line-9,
-#line-9 span {
-  letter-spacing: 11.6px;
-}
-#line-10,
-#line-10 span {
-  letter-spacing: 11.6px;
-}
-
 .hidden {
   display: none;
 }
